@@ -13,16 +13,13 @@ with (curr_dir / "input.txt").open() as input:
         direction, steps = values[-1].split(" ")
         x, z, aim = get_position(values[:-1])
         if direction == "forward":
-            # return (x + int(steps)), z, aim
             return (x + int(steps)), (z + int(steps) * aim), aim
         if direction == "up":
-            # return x, (z - int(steps)), aim
             return x, z, (aim - int(steps))
         if direction == "down":
-            # return x, (z + int(steps)), aim
             return x, z, (aim + int(steps))
     x, z, aim = get_position(input.readlines())
 
-    # print(f"PART1: {result}")
+    print(f"PART1: {x * aim}")
     print(f"PART2: {x * z}")
 
