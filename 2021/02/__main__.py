@@ -3,7 +3,7 @@ from pathlib import Path
 
 curr_dir = Path(__file__).parent
 with (curr_dir / "input.txt").open() as input:
-    values = [in_line.split("\n")[0].split(" ") for in_line in input]
+    values = [in_line.split(" ") for in_line in input]
     x, z, aim = 0, 0, 0
     for command in values:
         direction = command[0]
