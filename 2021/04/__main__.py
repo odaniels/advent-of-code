@@ -1,8 +1,7 @@
 from pathlib import Path
 
 
-curr_dir = Path(__file__).parent
-with (curr_dir / "input.txt").open() as input:
+def main(input):
     draws, *raw_boards = input.read().split("\n\n")
     boards = [[line.split() for line in block.strip().split("\n")] for block in raw_boards]
 
@@ -18,6 +17,21 @@ with (curr_dir / "input.txt").open() as input:
                         result = sum(sum(int(col) for col in row if col != None) for row in board)
                         wins[b] = int(draw) * result
 
-    print(f"PART1: {list(wins.values())[0]}")
-    print(f"PART2: {list(wins.values())[-1]}")
+    return list(wins.values())[0], list(wins.values())[-1]
 
+
+# --------------------------------------------------------- # 
+
+curr_dir = Path(__file__).parent
+
+with (curr_dir / "test_input.txt").open() as input:
+    part1, part2 = main(input)
+    assert part1 == 4512
+    assert part2 == 1924
+
+with (curr_dir / "input.txt").open() as input:
+    part1, part2 = main(input)
+    assert part1 == 82440
+    assert part2 == 20774
+    print(f"PART1: {part1}")
+    print(f"PART2: {part2}")
