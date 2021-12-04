@@ -3,11 +3,11 @@ from pathlib import Path
 
 curr_dir = Path(__file__).parent
 with (curr_dir / "input.txt").open() as input:
-    lines = [line.strip() for line in input.readlines()]
-    boards = [[line.split() for line in lines[6*i+2:6*i+7]] for i in range(int(len(lines[1:])/6))]
+    draws, *raw_boards = input.read().split("\n\n")
+    boards = [[line.split() for line in block.strip().split("\n")] for block in raw_boards]
 
     wins = {}
-    for draw in lines[0].split(","):
+    for draw in draws.split(","):
         for b, board in enumerate(boards):
             for r, row in enumerate(board):
                 for c, col in enumerate(row):
