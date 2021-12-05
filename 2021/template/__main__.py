@@ -1,6 +1,3 @@
-from pathlib import Path
-
-
 def main(input):
     values = [int(in_line) for in_line in input]
     result1 = ...
@@ -9,18 +6,27 @@ def main(input):
 
 
 # --------------------------------------------------------- # 
+import os
+from pathlib import Path
+
 
 curr_dir = Path(__file__).parent
 
 with (curr_dir / "test_input.txt").open() as input:
+    assert os.stat(input.fileno()).st_size, "test_input.txt is empty!"
     part1, part2 = main(input)
-    assert part1 == ...
-    assert part2 == ...
+    part1_expected = 1
+    assert part1 == part1_expected, f"Incorrect for test1. Expected: {part1_expected}. Actual: {part1}"
+    part2_expected = 2
+    assert part2 == part2_expected, f"Incorrect for test2. Expected: {part2_expected}. Actual: {part2}"
 
 with (curr_dir / "input.txt").open() as input:
+    assert os.stat(input.fileno()).st_size, "input.txt is empty!"
     part1, part2 = main(input)
-    # assert part1 == ...
-    # assert part2 == ...
     print(f"PART1: {part1}")
     print(f"PART2: {part2}")
+    # part1_expected = ...
+    # assert part1 == part1_expected, f"Incorrect for part1. Expected: {part1_expected}. Actual: {part1}"
+    # part1_expected = ...
+    # assert part2 == part2_expected, f"Incorrect for part2. Expected: {part2_expected}. Actual: {part2}"
 
