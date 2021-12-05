@@ -59,4 +59,4 @@ My [Advent of Code](https://adventofcode.com) solutions.
 [2102]: https://github.com/odaniels/advent-of-code/blob/main/2021/02/__main__.py
 [2103]: https://github.com/odaniels/advent-of-code/blob/main/2021/03/__main__.py
 [2104]: https://github.com/odaniels/advent-of-code/blob/main/2021/04/__main__.py
-[2104]: https://github.com/odaniels/advent-of-code/blob/main/2021/05/__main__.py
+[2105]: https://github.com/odaniels/advent-of-code/blob/main/2021/05/__main__.py
