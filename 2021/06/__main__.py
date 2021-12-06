@@ -1,6 +1,3 @@
-from collections import defaultdict
-
-
 def main(input):
     fish_ages = [int(age) for age in input.read().split(",")]
     fish_sums = [sum(int(age) == idx for age in fish_ages) for idx in range(9)]
