@@ -6,8 +6,8 @@ My [Advent of Code](https://adventofcode.com) solutions.
 | 02 | [✓][2002] | [✓][2102]  |
 | 03 | [✓][2003] | [✓][2103]  |
 | 04 | [✓][2004] | [✓][2104]  |
-| 05 | [✓][2005] | [✓][2105]   |
-| 06 | [✓][2006] |    |
+| 05 | [✓][2005] | [✓][2105]  |
+| 06 | [✓][2006] | [✓][2106]  |
 | 07 | [✓][2007] |    |
 | 08 | [✓][2008] |    |
 | 09 | [✓][2009] |    |
@@ -60,3 +60,4 @@ My [Advent of Code](https://adventofcode.com) solutions.
 [2103]: https://github.com/odaniels/advent-of-code/blob/main/2021/03/__main__.py
 [2104]: https://github.com/odaniels/advent-of-code/blob/main/2021/04/__main__.py
 [2105]: https://github.com/odaniels/advent-of-code/blob/main/2021/05/__main__.py
+[2106]: https://github.com/odaniels/advent-of-code/blob/main/2021/06/__main__.py
