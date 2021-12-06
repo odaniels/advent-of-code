@@ -2,31 +2,17 @@ from collections import defaultdict
 
 
 def main(input):
-    input_fishes = [int(age) for age in input.read().split(",")]
-    fishes_per_age = defaultdict(int)
+    fish_ages = [int(age) for age in input.read().split(",")]
+    fish_sums = [sum(int(age) == idx for age in fish_ages) for idx in range(9)]
 
-    for age in input_fishes:
-        fishes_per_age[age] += 1
+    total = [sum(fish_sums)]
+    for _ in range(256):
+        new_fishes = fish_sums[0]
+        fish_sums = fish_sums[1:] + [new_fishes]
+        fish_sums[6] += new_fishes 
+        total.append(sum(fish_sums))
 
-    part1_days, part2_days = 80, 256
-
-    for day in range(part2_days):
-        if day == part1_days:
-            result1 = sum(age for age in fishes_per_age.values())
-        
-        next_day = defaultdict(int)
-        for age, fishes in fishes_per_age.items():
-            if age == 0:
-                next_day[8] += fishes
-                next_day[6] += fishes
-            else:
-                next_day[age - 1] += fishes
-        fishes_per_age = next_day
-    
-    result2 = sum(age for age in fishes_per_age.values())
-    
-    return result1, result2
-
+    return total[80], total[256]
 
 # --------------------------------------------------------- # 
 import os
