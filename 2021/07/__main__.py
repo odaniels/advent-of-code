@@ -1,7 +1,7 @@
 def main(input):
     values = [int(in_line) for in_line in input.read().split(",")]
-    result1 = min(sum(abs(a - b) for b in values) for a in range(2000))
-    result2 = min(sum(sum(1 + c for c in range(abs(a - b))) for b in values) for a in range(2000)) # Very slow!
+    result1 = min(sum(abs(a - b) for b in values) for a in range(max(values)))
+    result2 = min(sum(int(abs(a - b) * (abs(a - b) + 1) / 2) for b in values) for a in range(max(values)))
     return result1, result2
 
 # --------------------------------------------------------- # 
