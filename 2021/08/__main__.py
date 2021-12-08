@@ -1,56 +1,30 @@
 def main(input):
-    values = [[b.strip().split() for b in a.split("|")] for a in input.readlines()]
-    len_values = [[[len(c) for c in b] for b in a] for a in values]
-    output_values = [a[1] for a in len_values]
-    result1 = sum(sum(b in [2, 3, 4, 7] for b in a) for a in output_values)
+    encoded_lines = [[b.strip().split() for b in a.split("|")] for a in input.readlines()]
 
-    digits = []
-    for value in values:
-        all_numbers = value[0] + value[1]
-        unique = set(all_numbers)
+    decoded_output = []
+    for encoded in encoded_lines:
         decoded = {}
+        uniques, output = encoded
 
-        for number in unique:
-            if len(number) == 2:
-                decoded[1] = set(number)
-            if len(number) == 3:
-                decoded[7] = set(number)
-            if len(number) == 4:
-                decoded[4] = set(number)
-            if len(number) == 7:
-                decoded[8] = set(number)
-        
-        for number in unique:
-            if len(number) == 5 and decoded[1].issubset(number):
-                decoded[3] = set(number)
+        decoded[1] = next(n for n in uniques if len(n) == 2)
+        decoded[7] = next(n for n in uniques if len(n) == 3)
+        decoded[4] = next(n for n in uniques if len(n) == 4)
+        decoded[8] = next(n for n in uniques if len(n) == 7)
+        decoded[3] = next(n for n in uniques if len(n) == 5 and set(decoded[1]).issubset(n))
+        decoded[9] = next(n for n in uniques if len(n) == 6 and set(decoded[3]).issubset(n))
 
-        left_line = decoded[8].difference(decoded[3])
-        
-        for number in unique:
-            if len(number) == 6 and decoded[3].issubset(number):
-                decoded[9] = set(number)
-            if len(number) == 6 and left_line.issubset(number) and decoded[1].issubset(number):
-                decoded[0] = set(number)
-            if len(number) == 6 and left_line.issubset(number) and not decoded[1].issubset(number):
-                decoded[6] = set(number)
-            if len(number) == 5 and len(decoded[4].intersection(number)) == 2 and set(number) not in decoded.values():
-                decoded[2] = set(number)
-            if len(number) == 5 and len(decoded[4].intersection(number)) == 3 and set(number) not in decoded.values():
-                decoded[5] = set(number)
+        left_line = set(decoded[8]).difference(decoded[3])
+        decoded[0] = next(n for n in uniques if len(n) == 6 and left_line.issubset(n) and set(decoded[1]).issubset(n))
+        decoded[6] = next(n for n in uniques if len(n) == 6 and left_line.issubset(n) and not set(decoded[1]).issubset(n))
+        decoded[2] = next(n for n in uniques if len(n) == 5 and len(set(decoded[4]).intersection(n)) == 2)
+        decoded[5] = next(n for n in uniques if len(n) == 5 and len(set(decoded[6]).intersection(n)) == 5)
 
+        out_digit = int("".join([str(next(k for k, value in decoded.items() if set(n) == set(value))) for n in output]))
+        decoded_output.append(out_digit)
 
-        string = ""
-        for number in value[1]:
-            for k, value in decoded.items():
-                if set(number) == value:
-                    string += str(k)
-        digits.append(int(string))
+    result1 = sum(sum(len(encoded) in [2, 3, 4, 7] for encoded in line[1]) for line in encoded_lines)
+    result2 = sum(decoded_output)
 
-    print(digits)            
-
-
-
-    result2 = sum(digits)
     return result1, result2
 
 
