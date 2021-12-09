@@ -26,27 +26,11 @@ def main(input):
 
 
 # --------------------------------------------------------- #
-import os
+import sys
 from pathlib import Path
 
+sys.path.insert(0, '')
+from utils.utils import run
 
-curr_dir = Path(__file__).parent
-
-with (curr_dir / "test_input.txt").open() as input:
-    assert os.stat(input.fileno()).st_size, "test_input.txt is empty!"
-    part1, part2 = main(input)
-    part1_expected = 15
-    assert part1 == part1_expected, f"Incorrect for test1. Expected: {part1_expected}. Actual: {part1}"
-    part2_expected = 1134
-    assert part2 == part2_expected, f"Incorrect for test2. Expected: {part2_expected}. Actual: {part2}"
-
-with (curr_dir / "input.txt").open() as input:
-    assert os.stat(input.fileno()).st_size, "input.txt is empty!"
-    part1, part2 = main(input)
-    print(f"PART1: {part1}")
-    print(f"PART2: {part2}")
-    part1_expected = 452
-    assert part1 == part1_expected, f"Incorrect for part1. Expected: {part1_expected}. Actual: {part1}"
-    part2_expected = 1263735
-    assert part2 == part2_expected, f"Incorrect for part2. Expected: {part2_expected}. Actual: {part2}"
-
+run(main, Path(__file__).parent / "test_input.txt", part1_expected=15, part2_expected=1134)
+run(main, Path(__file__).parent / "input.txt", part1_expected=452, part2_expected=1263735)
