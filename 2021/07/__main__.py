@@ -4,7 +4,7 @@ def main(input):
     result2 = min(sum(int(abs(a - b) * (abs(a - b) + 1) / 2) for b in values) for a in range(max(values)))
     return result1, result2
 
-# --------------------------------------------------------- # 
+# --------------------------------------------------------- #
 import os
 from pathlib import Path
 

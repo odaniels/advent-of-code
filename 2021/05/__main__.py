@@ -25,7 +25,7 @@ def find_overlap(line_points, allow_diagonals):
 
         for coord in coords:
             points[coord] += 1
-    
+
     return sum(v >= 2 for k,v in points.items())
 
 
@@ -34,7 +34,7 @@ def main(input):
     return find_overlap(line_points, False), find_overlap(line_points, True)
 
 
-# --------------------------------------------------------- # 
+# --------------------------------------------------------- #
 
 curr_dir = Path(__file__).parent
 

@@ -6,12 +6,12 @@ def main(input):
     for _ in range(256):
         new_fishes = fish_sums[0]
         fish_sums = fish_sums[1:] + [new_fishes]
-        fish_sums[6] += new_fishes 
+        fish_sums[6] += new_fishes
         total.append(sum(fish_sums))
 
     return total[80], total[256]
 
-# --------------------------------------------------------- # 
+# --------------------------------------------------------- #
 import os
 from pathlib import Path
 

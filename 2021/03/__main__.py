@@ -25,7 +25,7 @@ with (curr_dir / "input.txt").open() as input:
         middle = len(co_values) / 2
         filter_value = 1 if sum(line[idx] for line in co_values) < middle else 0
         co_values = [line for line in co_values if line[idx] == filter_value]
-    
+
     oxygen = int("".join(str(v) for v in ox_values[0]), 2)
     co2 = int("".join(str(v) for v in co_values[0]), 2)
 
