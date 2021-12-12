@@ -8,16 +8,17 @@ def main(input):
         connections[pair[1]].append(pair[0])
 
     result1, result2 = 0, 0
-    path, options = ["start"], connections["start"]
+    solver = [(["start"], connections["start"])]
     small_twice = None
 
-    while options:
-        option = options.pop()
-
-        if path and option == path[-1]:
-            path.pop()
-            small_twice = None if small_twice == option else small_twice
+    while solver:
+        path, options = solver[-1]
+        if not options:
+            solver.pop()
+            small_twice = None if small_twice == path.pop() else small_twice
             continue
+
+        option = options.pop()
         if option == "start":
             continue
         if option == "end":
@@ -26,12 +27,10 @@ def main(input):
             continue
         if option.islower() and option in path and small_twice:
             continue
+
         if option.islower() and option in path:
             small_twice = option
-
-        path.append(option)
-        options.append(option)
-        options += connections[option]
+        solver.append((path + [option], connections[option].copy()))
 
     return result1, result2
 
