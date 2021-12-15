@@ -1,4 +1,4 @@
-from collections import Counter
+import heapq
 
 
 def valid_neighbors(grid, pos):
@@ -11,23 +11,20 @@ def valid_neighbors(grid, pos):
     ]
     return [(_x, _y) for _x, _y in neighbors_coords if (_x, _y) in grid]
 
-def find_path(risk_map, start, end):
-    total_risks = Counter()
-    for neighbor in valid_neighbors(risk_map, start):
-        total_risks[neighbor] += risk_map[neighbor]
 
-    queue = total_risks.copy()
+def find_path(risk_map, start, end):
+    visited = set()
+    queue = [(0, start)]
     while queue:
-        node, total_risk = queue.most_common()[-1]
-        del queue[node]
+        total_risk, node = heapq.heappop(queue)
         if node == end:
-            return total_risks[node]
+            return total_risk
         for neighbor in valid_neighbors(risk_map, node):
-            if neighbor in total_risks:
+            if neighbor in visited:
                 continue
             else:
-                queue[neighbor] = total_risk + risk_map[neighbor]
-                total_risks[neighbor] += queue[neighbor]
+                visited.add(neighbor)
+                heapq.heappush(queue, (total_risk + risk_map[neighbor], neighbor))
 
 def main(input):
     numbers = [list(map(int, line.strip())) for line in input.readlines()]
@@ -35,7 +32,7 @@ def main(input):
     result1 = find_path(risk_map, (0,0), (len(numbers[0]) - 1, len(numbers) - 1))
 
     big_map = {}
-    scale = 1
+    scale = 5
     for i in range(scale):
         for j in range(scale):
             for pos, cost in risk_map.items():
