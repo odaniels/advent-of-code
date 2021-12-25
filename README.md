@@ -25,8 +25,8 @@ My [Advent of Code](https://adventofcode.com) solutions.
 | 21 | [✓][2021] | [✓][2121]  |
 | 22 | [✓][2022] | [✓][2122]  |
 | 23 | [✓][2023] | [✓][2123]  |
-| 24 | [✓][2024] |    |
-| 25 | [✓][2025] |    |
+| 24 | [✓][2024] | [✓][2124]  |
+| 25 | [✓][2025] | [✓][2125]  |
 
 
 [2001]: https://github.com/odaniels/advent-of-code/blob/main/2020/01/__main__.py
